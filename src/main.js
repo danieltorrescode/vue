@@ -3,6 +3,9 @@ import './plugins/vuetify'
 import App from './App.vue'
 import router from './router'
 import store from './store'
+import vuetify from './plugins/vuetify';
+import 'roboto-fontface/css/roboto/roboto-fontface.css'
+import '@mdi/font/css/materialdesignicons.css'
 
 Vue.config.productionTip = false
 
@@ -10,7 +13,7 @@ Vue.config.productionTip = false
 Vue.prototype.$App = Object.freeze({
     title:   'VUE',
     version: '0.1',
-    baseUrl: 'http://127.0.0.1:3000/api/mevn/',
+    baseUrl: 'http://localhost:8086/api/',
     debug: true,
     theme:{ 
         headPpal:    'red darkness-3',
@@ -25,7 +28,8 @@ Vue.prototype.$App = Object.freeze({
 })
 
 new Vue({
-  router,
-  store,
-  render: h => h(App)
+    router,
+    store,
+    vuetify,
+    render: h => h(App)
 }).$mount('#app')
