@@ -1,17 +1,17 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+import Vue from 'vue';
+import Vuex from 'vuex';
 
-Vue.use(Vuex)
+Vue.use(Vuex);
 
-import user from './user'
-import message from './message'
+import user from './user';
+import message from './message';
 
-const debug = process.env.NODE_ENV !== 'production'
+const debug = process.env.NODE_ENV !== 'production';
 
 export default new Vuex.Store({
   modules: {
     message,
     user,
   },
-  strict: debug
-})
+  strict: debug,
+});
