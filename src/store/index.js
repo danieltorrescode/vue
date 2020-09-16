@@ -3,8 +3,8 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
-import user from './views/auth/store/user'
-import message from './views/home/store/message'
+import user from './user'
+import message from './message'
 
 const debug = process.env.NODE_ENV !== 'production'
 

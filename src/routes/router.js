@@ -1,9 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Auth from './views/auth/routes/index'
-import Home from './views/home/routes/index'
+import Auth from './auth'
+import Home from './home'
 
-import Tasks from './views/tasks/routes/index'
+import Tasks from './task'
 
 Vue.use(Router)
 

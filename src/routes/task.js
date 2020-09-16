@@ -1,4 +1,4 @@
-import Tasks from '~/views/tasks/tasks/Index.vue'
+import Tasks from '~/views/tasks/Index.vue'
 
 export default [
     {
