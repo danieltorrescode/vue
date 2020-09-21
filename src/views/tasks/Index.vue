@@ -12,43 +12,55 @@
       <v-icon dark right>add</v-icon>
     </v-btn>
 
-    <tasks-list
-      :listResource="resource"
-      :addedItem="addedItem"
-      :updatedItem="updatedItem"
-      @listSelected="listSelected"
-    >
-    </tasks-list>
+    <view-list :listResource="url" @listSelected="listSelected"> </view-list>
 
     <app-modal :modal="showModal" @closeModal="showModal = !showModal">
-      <tasks-form
-        :formResource="resource"
+      <view-form
+        :formResource="url"
         :formSelected="selectedItem"
         @updateList="updateList"
         @closeModal="showModal = !showModal"
       >
-      </tasks-form>
+      </view-form>
     </app-modal>
   </v-container>
 </template>
 
 <script>
-import parentMixin from '~/mixins/parent';
-
-import TasksForm from './TasksForm';
-import TasksList from './TasksList';
+import Form from './Form';
+import List from './List';
 
 import AppModal from '~/components/AppModal';
 
 export default {
-  mixins: [parentMixin],
   components: {
-    "tasks-form": TasksForm,
-    "tasks-list": TasksList,
-    "app-modal": AppModal,
+    'view-form': Form,
+    'view-list': List,
+    'app-modal': AppModal,
   },
   data: () => ({
-    resource: 'tasks/',
+    resource: 'posts/',
+    selectedItem: {},
+    showModal: false,
   }),
+  computed: {
+    url() {
+      return `${this.$App.baseUrl}/${this.resource}`;
+    },
+  },
+  methods: {
+    listSelected(item) {
+      this.selectedItem = { ...item };
+      this.showModal = !this.showModal;
+    },
+    updateList(item) {
+      this.selectedItem = {};
+      if ('_id' in item) {
+        this.updatedItem = { ...item };
+      } else {
+        this.addedItem = { ...item };
+      }
+    },
+  },
 };
 </script>

@@ -32,21 +32,22 @@
 </template>
 
 <script>
+import authMixin from '~/mixins/auth';
 import formMixin from '~/mixins/form';
-import fetchMixin from '~/mixins/fetch';
 import rulesMixin from '~/mixins/rules';
 
 export default {
-  mixins: [formMixin, fetchMixin, rulesMixin],
-  props: {
-    formResource: {
-      default: 'users/login/',
-    },
-  },
+  mixins: [authMixin, formMixin, rulesMixin],
   data: () => ({
+    resource: 'posts',
     email: '',
     password: '',
   }),
+  computed: {
+    url() {
+      return `${this.$App.baseUrl}/${this.resource}`;
+    },
+  },
   methods: {
     afterValidate: function () {
       this.login();
@@ -57,12 +58,21 @@ export default {
         password: this.password.trim(),
       };
 
-      // function params
-      // request(method,resource,data)
-      // fetchHeaders most be overwrite to not send jwt
-      this.fetchHeaders = {};
-      this.response = await this.request('POST', this.formResource, data);
-      this.authenticate();
+      let content = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          /* Authorization: `${localStorage.getItem('token')}`, */
+        },
+        body: JSON.stringify(data),
+      };
+
+      fetch(this.url, content)
+        .then((response) => response.json())
+        .then((json) => this.authenticate(json))
+        .catch((error) => {
+          console.error('Error:', error);
+        });
     },
   },
 };

@@ -11,7 +11,6 @@ export default {
   },
   data() {
     return {
-      formCalendar: false,
       formValid: true,
       formLoading: true,
     };
@@ -24,13 +23,13 @@ export default {
   },
   computed: {
     isAdding() {
-      return JSON.stringify(this.formSelected) == "{}";
+      return JSON.stringify(this.formSelected) == '{}';
     },
   },
   methods: {
     formReset() {
       this.$refs.form.reset();
-      this.$emit("closeModal");
+      this.$emit('closeModal');
     },
     validate() {
       if (this.$refs.form.validate()) {

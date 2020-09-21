@@ -26,7 +26,7 @@
 <script>
 export default {
   name: 'app-modal',
-  props: ["modal", "titulo"],
+  props: ['modal', 'titulo'],
 };
 </script>
 <style scope></style>
