@@ -17,12 +17,12 @@ export default [
     component: () =>
       import(
         /* webpackChunkName: "about" */
-        "~/views/home/About.vue"
+        '~/views/home/About.vue'
       ),
   },
   {
     path: '*',
-    name: "error",
+    name: 'error',
     component: Error,
   },
 ];

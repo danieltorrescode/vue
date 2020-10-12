@@ -109,7 +109,6 @@ export default {
           /* Authorization: `${localStorage.getItem('token')}`, */
         },
       };
-
       fetch(resource, content)
         .then((response) => response.json())
         .then((json) => {

@@ -25,7 +25,7 @@ export default {
       state.color = color;
     },
     setMessageText(state, text) {
-      state.text = text || "Error";
+      state.text = text || 'Error';
     },
     setMessageSubText(state, subText) {
       state.subText = subText;
@@ -36,24 +36,24 @@ export default {
   },
   actions: {
     message({ commit, state }, color, text, subtext) {
-      commit("setMessageShow", true);
-      commit("setMessageText", text);
-      commit("setMessageSubText", subtext);
-      commit("setMessageColor", color);
+      commit('setMessageShow', true);
+      commit('setMessageText', text);
+      commit('setMessageSubText', subtext);
+      commit('setMessageColor', color);
 
       setTimeout(() => {
-        commit("setMessageShow", false);
-        commit("setMessageText", "");
-        commit("setMessageSubText", "");
-        commit("setMessageColor", "error");
+        commit('setMessageShow', false);
+        commit('setMessageText', '');
+        commit('setMessageSubText', '');
+        commit('setMessageColor', 'error');
       }, state.timeout);
     },
     cleanMessage({ commit, state }) {
       setTimeout(() => {
-        commit("setMessageShow", false);
-        commit("setMessageText", "");
-        commit("setMessageSubText", "");
-        commit("setMessageColor", "error");
+        commit('setMessageShow', false);
+        commit('setMessageText', '');
+        commit('setMessageSubText', '');
+        commit('setMessageColor', 'error');
       }, state.timeout);
     },
   },

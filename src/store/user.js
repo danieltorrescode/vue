@@ -11,7 +11,7 @@ export default {
 
   mutations: {
     setUser(state) {
-      state.user = JSON.parse(localStorage.getItem("user"));
+      state.user = JSON.parse(localStorage.getItem('user'));
     },
   },
 };
