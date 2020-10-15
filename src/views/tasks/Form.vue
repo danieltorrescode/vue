@@ -51,7 +51,7 @@ export default {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          /* Authorization: `${localStorage.getItem('token')}`, */
+          Authorization: `${localStorage.getItem('token')}`,
         },
         body: JSON.stringify(this.form),
       };
@@ -59,11 +59,10 @@ export default {
       fetch(this.formResource, content)
         .then((response) => response.json())
         .then((json) => {
-          console.log(json);
-          /* if (this.response.task._id) {
-            this.showMessage(this.response.text, 'success');
-            this.$emit('updateList', this.response.task);
-          } */
+          if (json.task._id) {
+            // this.showMessage(this.response.text, 'success');
+            this.$emit('updateList', json.task);
+          }
         })
         .catch((error) => {
           console.error('Error:', error);

@@ -12,7 +12,12 @@
       <v-icon dark right>add</v-icon>
     </v-btn>
 
-    <view-list :listResource="url" @listSelected="listSelected"> </view-list>
+    <view-list
+      :listResource="url"
+      :updateList="updateItemList"
+      @listSelected="listSelected"
+    >
+    </view-list>
 
     <app-modal :modal="showModal" @closeModal="showModal = !showModal">
       <view-form
@@ -39,9 +44,10 @@ export default {
     'app-modal': AppModal,
   },
   data: () => ({
-    resource: 'posts/',
+    resource: 'tasks',
     selectedItem: {},
     showModal: false,
+    updateItemList: 0,
   }),
   computed: {
     url() {
@@ -56,9 +62,7 @@ export default {
     updateList(item) {
       this.selectedItem = {};
       if ('_id' in item) {
-        this.updatedItem = { ...item };
-      } else {
-        this.addedItem = { ...item };
+        this.updateItemList = item._id;
       }
     },
   },

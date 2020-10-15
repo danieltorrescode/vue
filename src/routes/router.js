@@ -15,7 +15,7 @@ const router = new Router({
 
 // Global Guard
 router.beforeEach((to, from, next) => {
-  let allowed = ['signup', 'login', 'home', 'error'];
+  let allowed = ['signup', 'login', 'error'];
 
   if (allowed.indexOf(to.name) == -1 && localStorage.getItem('token') == null) {
     next({ path: '/login' });

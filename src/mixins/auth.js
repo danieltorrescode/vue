@@ -6,20 +6,18 @@ export default {
   watch: {},
   methods: {
     authenticate: function (json) {
-      console.log(json);
-      if ('token' in this.response) {
-        let token = this.response.token;
-        let user = this.response.user;
+      if ('token' in json) {
+        let token = json.token;
+        let user = json.user;
 
         localStorage.setItem('token', token);
         localStorage.setItem('user', JSON.stringify(user));
 
-        this.showMessage(this.response.text, 'success');
-
-        this.$store.commit('setUser');
+        // this.showMessage(this.response.text, 'success');
+        // this.$store.commit('setUser');
         this.$router.push('/');
       } else {
-        this.showMessage(this.response.text, 'error');
+        this.showMessage(json.text, 'error');
       }
     },
     logout(message) {

@@ -57,7 +57,7 @@ import rulesMixin from '~/mixins/rules';
 export default {
   mixins: [authMixin, formMixin, rulesMixin],
   data: () => ({
-    resource: 'auth',
+    resource: 'users',
     firstName: '',
     lastName: '',
     email: '',

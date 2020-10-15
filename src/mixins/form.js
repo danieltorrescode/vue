@@ -2,7 +2,7 @@ export default {
   props: {
     formResource: {
       type: String,
-      required: true,
+      required: false,
     },
     formSelected: {
       type: Object,

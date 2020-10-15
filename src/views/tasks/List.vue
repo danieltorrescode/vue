@@ -23,8 +23,8 @@
         >
           <template v-slot:item="{ item }">
             <tr>
-              <td class="text-xs-left">{{ item.id }}</td>
-              <td class="text-xs-left">{{ item.title }}</td>
+              <td class="text-xs-left">{{ item.name }}</td>
+              <td class="text-xs-left">{{ item.description }}</td>
               <td class="justify-center">
                 <v-icon @click="selectItem(item, 'upd')"> edit </v-icon>
                 <v-icon @click="selectItem(item, 'del')"> delete </v-icon>
@@ -76,18 +76,32 @@ export default {
   mixins: [listMixin],
   data: () => ({
     tableHeaders: [
-      { text: 'Name', value: 'id' },
-      { text: 'Description', value: 'title' },
+      { text: 'Name', value: 'name' },
+      { text: 'Description', value: 'description' },
       { text: 'Actions', value: 'actions', sortable: false },
     ],
   }),
   created() {
     this.getTasks();
   },
+  watch: {
+    updateList: function () {
+      this.getTasks();
+    },
+  },
   methods: {
     getTasks: async function () {
       this.listLoading = true;
-      fetch(this.listResource)
+
+      let content = {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `${localStorage.getItem('token')}`,
+        },
+      };
+
+      fetch(this.listResource, content)
         .then((response) => response.json())
         .then((json) => {
           console.log(json);

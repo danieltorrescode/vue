@@ -4,6 +4,10 @@ export default {
       type: String,
       required: true,
     },
+    updateList: {
+      type: Number,
+      required: true,
+    },
   },
   data() {
     return {
