@@ -58,7 +58,7 @@
           <h3>Alert</h3>
         </v-card-title>
         <v-card-text>
-          <v-icon>alert</v-icon> want you delete: "{{ listSelected.title }}"
+          <v-icon>alert</v-icon> want you delete: "{{ listSelected.name }}"
         </v-card-text>
         <v-card-actions>
           <v-btn color="success" @click="deleteTask()">confirm</v-btn>
@@ -104,7 +104,6 @@ export default {
       fetch(this.listResource, content)
         .then((response) => response.json())
         .then((json) => {
-          console.log(json);
           this.listItems = json;
           this.listLoading = false;
         })
@@ -114,22 +113,23 @@ export default {
     },
     deleteTask: async function () {
       this.listDialog = false;
-      let resource = `${this.listResource}/${this.listSelected.id}`;
+      let resource = `${this.listResource}/${this.listSelected._id}`;
 
       let content = {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
-          /* Authorization: `${localStorage.getItem('token')}`, */
+          Authorization: `${localStorage.getItem('token')}`,
         },
       };
       fetch(resource, content)
         .then((response) => response.json())
         .then((json) => {
-          console.log(json);
-          /* if (this.response.task._id) {
-            this.showMessage(this.response.text, 'success');
-          } */
+          if (json.task._id) {
+            console.log(json);
+            // this.showMessage(json.text, 'success');
+          }
+          this.getTasks();
         })
         .catch((error) => {
           console.error('Error:', error);

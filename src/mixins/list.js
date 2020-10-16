@@ -5,7 +5,7 @@ export default {
       required: true,
     },
     updateList: {
-      type: Number,
+      type: String,
       required: true,
     },
   },

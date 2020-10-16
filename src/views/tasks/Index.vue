@@ -47,7 +47,7 @@ export default {
     resource: 'tasks',
     selectedItem: {},
     showModal: false,
-    updateItemList: 0,
+    updateItemList: '',
   }),
   computed: {
     url() {
@@ -62,7 +62,8 @@ export default {
     updateList(item) {
       this.selectedItem = {};
       if ('_id' in item) {
-        this.updateItemList = item._id;
+        let seconds = new Date();
+        this.updateItemList = item._id + seconds.getSeconds();
       }
     },
   },

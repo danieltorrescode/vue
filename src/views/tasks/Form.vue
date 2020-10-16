@@ -72,12 +72,12 @@ export default {
       this.formReset();
     },
     editTask: async function () {
-      let formResource = `${this.formResource}/${this.formSelected.id}`;
+      let formResource = `${this.formResource}/${this.formSelected._id}`;
       let content = {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
-          /* Authorization: `${localStorage.getItem('token')}`, */
+          Authorization: `${localStorage.getItem('token')}`,
         },
         body: JSON.stringify(this.form),
       };
@@ -85,11 +85,10 @@ export default {
       fetch(formResource, content)
         .then((response) => response.json())
         .then((json) => {
-          console.log(json);
-          /* if (this.response.task._id) {
-            this.showMessage(this.response.text, 'success');
-            this.$emit('updateList', this.response.task);
-          } */
+          if (json.task._id) {
+            // this.showMessage(this.response.text, 'success');
+            this.$emit('updateList', json.task);
+          }
         })
         .catch((error) => {
           console.error('Error:', error);
