@@ -51,7 +51,7 @@ export default {
   }),
   computed: {
     url() {
-      return `${this.$App.baseUrl}/${this.resource}`;
+      return `${this.$App.baseUrl}/${this.resource}/`;
     },
   },
   methods: {

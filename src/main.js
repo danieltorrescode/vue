@@ -13,7 +13,7 @@ Vue.config.productionTip = false;
 Vue.prototype.$App = Object.freeze({
   title: 'VUE',
   version: '0.1',
-  baseUrl: 'http://localhost:8088/api',
+  baseUrl: 'http://localhost:8080/api',
   debug: true,
   theme: {
     headPpal: 'red darkness-3',

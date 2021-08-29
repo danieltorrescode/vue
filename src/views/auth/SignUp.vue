@@ -65,7 +65,7 @@ export default {
   }),
   computed: {
     url() {
-      return `${this.$App.baseUrl}/${this.resource}`;
+      return `${this.$App.baseUrl}/${this.resource}/`;
     },
   },
   methods: {
@@ -78,6 +78,7 @@ export default {
         lastName: this.lastName.trim(),
         password: this.password.trim(),
         email: this.email.trim(),
+        username: this.email.trim(),
       };
 
       let content = {
