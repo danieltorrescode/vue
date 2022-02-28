@@ -97,10 +97,9 @@ export default {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `${localStorage.getItem('token')}`,
+          Authorization: `JWT ${localStorage.getItem('token')}`,
         },
       };
-
       fetch(this.listResource, content)
         .then((response) => response.json())
         .then((json) => {
@@ -113,21 +112,19 @@ export default {
     },
     deleteTask: async function () {
       this.listDialog = false;
-      let resource = `${this.listResource}/${this.listSelected._id}`;
-
+      let resource = `${this.listResource}edit/${this.listSelected.id}/`;
       let content = {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `${localStorage.getItem('token')}`,
+          Authorization: `JWT ${localStorage.getItem('token')}`,
         },
       };
       fetch(resource, content)
-        .then((response) => response.json())
+        // .then((response) => response.json())
         .then((json) => {
-          if (json.task._id) {
-            console.log(json);
-            // this.showMessage(json.text, 'success');
+          if (json.status == 204) {
+            this.showMessage('success', 'success');
           }
           this.getTasks();
         })

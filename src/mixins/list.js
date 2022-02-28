@@ -31,5 +31,11 @@ export default {
         this.listDialog = true;
       }
     },
+    showMessage(message, type) {
+      this.$store.commit('setMessageColor', type);
+      this.$store.commit('setMessageShow', true);
+      this.$store.commit('setMessageText', message);
+      this.$store.dispatch('cleanMessage');
+    },
   },
 };

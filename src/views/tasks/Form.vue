@@ -51,7 +51,7 @@ export default {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `${localStorage.getItem('token')}`,
+          Authorization: `JWT ${localStorage.getItem('token')}`,
         },
         body: JSON.stringify(this.form),
       };
@@ -59,9 +59,9 @@ export default {
       fetch(this.formResource, content)
         .then((response) => response.json())
         .then((json) => {
-          if (json.task._id) {
+          if (json.id) {
             // this.showMessage(this.response.text, 'success');
-            this.$emit('updateList', json.task);
+            this.$emit('updateList', json);
           }
         })
         .catch((error) => {
@@ -72,12 +72,12 @@ export default {
       this.formReset();
     },
     editTask: async function () {
-      let formResource = `${this.formResource}/${this.formSelected._id}`;
+      let formResource = `${this.formResource}edit/${this.formSelected.id}/`;
       let content = {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `${localStorage.getItem('token')}`,
+          Authorization: `JWT ${localStorage.getItem('token')}`,
         },
         body: JSON.stringify(this.form),
       };
@@ -85,9 +85,9 @@ export default {
       fetch(formResource, content)
         .then((response) => response.json())
         .then((json) => {
-          if (json.task._id) {
-            // this.showMessage(this.response.text, 'success');
-            this.$emit('updateList', json.task);
+          if (json.id) {
+            this.showMessage(this.response.text, 'success');
+            this.$emit('updateList', json);
           }
         })
         .catch((error) => {

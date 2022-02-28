@@ -8,7 +8,8 @@ export default {
     authenticate: function (json) {
       if ('token' in json) {
         let token = json.token;
-        let user = json.user;
+        // let user = json.user;
+        let user = json.email;
 
         localStorage.setItem('token', token);
         localStorage.setItem('user', JSON.stringify(user));

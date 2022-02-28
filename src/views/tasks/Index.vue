@@ -1,5 +1,8 @@
 <template>
   <v-container align-center>
+    <br />
+    <br />
+    <br />
     <v-btn
       slot="activator"
       dark
@@ -8,7 +11,7 @@
       right
       @click="showModal = !showModal"
     >
-      Add Task
+      Add Task+
       <v-icon dark right>add</v-icon>
     </v-btn>
 
@@ -61,9 +64,9 @@ export default {
     },
     updateList(item) {
       this.selectedItem = {};
-      if ('_id' in item) {
+      if ('id' in item) {
         let seconds = new Date();
-        this.updateItemList = item._id + seconds.getSeconds();
+        this.updateItemList = item.id + seconds.getSeconds();
       }
     },
   },

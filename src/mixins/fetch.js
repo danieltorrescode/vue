@@ -3,7 +3,7 @@ export default {
     return {
       url: this.$App.baseUrl,
       fetchHeaders: {
-        Authorization: `${localStorage.getItem('token')}`,
+        Authorization: `JWT ${localStorage.getItem('token')}`,
       },
       fetchContent: {},
       response: null,
