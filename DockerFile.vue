@@ -1,4 +1,4 @@
-FROM node:latest
+FROM node:14-bullseye
 
 # Create app directory
 RUN mkdir /app
@@ -20,9 +20,9 @@ RUN chmod 755 ./.docker/entrypoint.sh
 USER node
 
 # run entrypoint.sh
-ENTRYPOINT ["sh", "/app/.docker/entrypoint.sh"]
+# ENTRYPOINT ["sh", "/app/.docker/entrypoint.sh"]
 
 # Install app dependencies
-# RUN npm install
+RUN npm install
 
 CMD [ "npm", "run", "serve"]

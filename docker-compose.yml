@@ -1,15 +1,15 @@
 version: '3.7'
 
 services:
-  node:
-    container_name: node
+  vue:
+    container_name: vue
     build:
       context: .
-      dockerfile: DockerFile.node
+      dockerfile: DockerFile.vue
     volumes:
       - .:/app
     ports:
-      - "8080:8000"
+      - "8000:8000"
       - "8081:8001"
     stdin_open: true
     tty: true
