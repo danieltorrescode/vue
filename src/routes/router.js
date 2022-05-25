@@ -1,13 +1,11 @@
-import Vue from 'vue';
-import Router from 'vue-router';
+import { createRouter, createWebHashHistory } from 'vue-router';
 import Auth from './auth';
 import Home from './home';
-
 import Tasks from './task';
 
-Vue.use(Router);
 
-const router = new Router({
+const router = createRouter({
+  history: createWebHashHistory(),
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [...Auth, ...Tasks, ...Home],

@@ -1,17 +1,15 @@
 <template>
-  <v-container align-center>
-    <v-btn
-      slot="activator"
-      dark
-      class="mb-2"
-      color="primary"
-      right
-      @click="showModal = !showModal"
+  <div>
+    <view-form
+      :formResource="url"
+      :formSelected="selectedItem"
+      @updateList="updateList"
+      @closeModal="showModal = !showModal"
     >
-      Add Task
-      <v-icon dark right>add</v-icon>
-    </v-btn>
-
+    </view-form>
+    <br>
+    <br>
+    <br>
     <view-list
       :listResource="url"
       :updateList="updateItemList"
@@ -19,29 +17,18 @@
     >
     </view-list>
 
-    <app-modal :modal="showModal" @closeModal="showModal = !showModal">
-      <view-form
-        :formResource="url"
-        :formSelected="selectedItem"
-        @updateList="updateList"
-        @closeModal="showModal = !showModal"
-      >
-      </view-form>
-    </app-modal>
-  </v-container>
+  </div>
 </template>
 
 <script>
-import Form from './Form';
-import List from './List';
+import Form from './Form.vue';
+import List from './List.vue';
 
-import AppModal from '~/components/AppModal';
 
 export default {
   components: {
     'view-form': Form,
     'view-list': List,
-    'app-modal': AppModal,
   },
   data: () => ({
     resource: 'tasks',
@@ -57,7 +44,6 @@ export default {
   methods: {
     listSelected(item) {
       this.selectedItem = { ...item };
-      this.showModal = !this.showModal;
     },
     updateList(item) {
       this.selectedItem = {};

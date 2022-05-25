@@ -1,5 +1,5 @@
-import Home from '~/views/home/Home.vue';
-import Error from '~/views/home/Error.vue';
+import Home from '@/views/home/Home.vue';
+import Error from '@/views/home/Error.vue';
 
 export default [
   {
@@ -17,11 +17,11 @@ export default [
     component: () =>
       import(
         /* webpackChunkName: "about" */
-        '~/views/home/About.vue'
+        '@/views/home/About.vue'
       ),
   },
   {
-    path: '*',
+    path: '/:pathMatch(.*)*',
     name: 'error',
     component: Error,
   },

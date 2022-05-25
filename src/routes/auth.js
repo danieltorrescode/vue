@@ -1,5 +1,5 @@
-import SignUp from '~/views/auth/SignUp.vue';
-import LogIn from '~/views/auth/LogIn.vue';
+import SignUp from '@/views/auth/SignUp.vue';
+import LogIn from '@/views/auth/LogIn.vue';
 
 export default [
   {

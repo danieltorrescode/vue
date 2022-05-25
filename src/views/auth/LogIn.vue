@@ -1,40 +1,24 @@
 <template>
-  <v-form ref="form" v-model="formValid" lazy-validation>
-    <v-container>
-      <v-layout row wrap align-center justify-center>
-        <v-flex xs12 md4>
-          <v-text-field
-            v-model="email"
-            :rules="rules.email"
-            label="E-mail"
-            required
-          ></v-text-field>
-        </v-flex>
+  <div>
+      <br />
+      <label for="email">E-mail</label>
+      <input type="email" name="" id="email" v-model="email" />
+      <br />
 
-        <v-flex xs12 md4>
-          <v-text-field
-            v-model="password"
-            :counter="10"
-            label="Password"
-            type="password"
-            required
-          ></v-text-field>
-        </v-flex>
+      <label for="password">Password</label>
+      <input type="password" name="" id="password" v-model="password" />
 
-        <v-btn :disabled="!formValid" color="success" @click="validate">
-          Submit
-        </v-btn>
-
-        <v-btn color="error" @click="formReset"> Cancel </v-btn>
-      </v-layout>
-    </v-container>
-  </v-form>
+      <br />
+      <button @click="login">Submit</button>
+      <br />
+      <button @click="cancel('cancel')">Cancel</button>
+  </div>
 </template>
 
 <script>
-import authMixin from '~/mixins/auth';
-import formMixin from '~/mixins/form';
-import rulesMixin from '~/mixins/rules';
+import authMixin from '@/mixins/auth';
+import formMixin from '@/mixins/form';
+import rulesMixin from '@/mixins/rules';
 
 export default {
   mixins: [authMixin, formMixin, rulesMixin],
@@ -49,6 +33,9 @@ export default {
     },
   },
   methods: {
+    cancel: function(x){
+      alert(x);
+    },
     afterValidate: function () {
       this.login();
     },

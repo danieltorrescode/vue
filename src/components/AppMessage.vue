@@ -16,26 +16,26 @@
 <script>
 export default {
   computed: {
-    showMessage() {
-      return this.$store.getters['messageShow'];
-    },
-    txtMessage() {
-      return this.$store.getters['messageText'];
-    },
-    subTxtMessage() {
-      return this.$store.getters['messageSubtext'];
-    },
-    colorMessage() {
-      return this.$store.getters['messageColor'];
-    },
-    timeoutMessage() {
-      return this.$store.getters['messageTimeout'];
-    },
+    // showMessage() {
+    //   return this.$store.getters['messageShow'];
+    // },
+    // txtMessage() {
+    //   return this.$store.getters['messageText'];
+    // },
+    // subTxtMessage() {
+    //   return this.$store.getters['messageSubtext'];
+    // },
+    // colorMessage() {
+    //   return this.$store.getters['messageColor'];
+    // },
+    // timeoutMessage() {
+    //   return this.$store.getters['messageTimeout'];
+    // },
   },
   methods: {
-    close() {
-      this.$store.commit('setMessageShow', false);
-    },
+    // close() {
+    //   this.$store.commit('setMessageShow', false);
+    // },
   },
 };
 </script>

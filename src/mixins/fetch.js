@@ -57,7 +57,7 @@ export default {
 
         this.showMessage(this.response.text, 'success');
 
-        this.$store.commit('setUser');
+        // this.$store.commit('setUser');
         this.$router.push('/');
       } else {
         this.showMessage(this.response.text, 'error');
@@ -66,15 +66,15 @@ export default {
     logout(message) {
       localStorage.removeItem('token');
       localStorage.setItem('user', '{}');
-      this.$store.commit('setUser');
+      // this.$store.commit('setUser');
       this.$router.push('/');
       this.showMessage(message, 'error');
     },
     showMessage(message, type) {
-      this.$store.commit('setMessageColor', type);
-      this.$store.commit('setMessageShow', true);
-      this.$store.commit('setMessageText', message);
-      this.$store.dispatch('cleanMessage');
+      // this.$store.commit('setMessageColor', type);
+      // this.$store.commit('setMessageShow', true);
+      // this.$store.commit('setMessageText', message);
+      // this.$store.dispatch('cleanMessage');
     },
   },
 };

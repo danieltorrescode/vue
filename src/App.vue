@@ -1,35 +1,23 @@
 <template>
-  <v-app>
-    <v-main>
       <app-toolbar />
       <router-view />
-    </v-main>
-
-    <app-message></app-message>
-  </v-app>
+    <!-- <app-message></app-message> -->
 </template>
 
 <script>
-import AppMessage from '~/components/AppMessage.vue';
-import AppToolBar from '~/layouts/AppToolBar.vue';
+import AppToolBar from '@/layouts/AppToolBar.vue';
+import AppMessage from '@/components/AppMessage.vue';
 
 export default {
   name: 'App',
+
   components: {
-    'app-message': AppMessage,
     'app-toolbar': AppToolBar,
+    // 'app-message': AppMessage,
   },
-  created() {
-    this.$store.commit('setUser');
-    document.title = this.$App.title;
-  },
-  data: () => ({}),
-  methods: {
-    logout() {
-      localStorage.removeItem('token');
-      localStorage.removeItem('user');
-      this.$router.push('/');
-    },
-  },
+
+  data: () => ({
+    //
+  }),
 };
 </script>

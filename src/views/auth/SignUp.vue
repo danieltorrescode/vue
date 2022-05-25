@@ -1,58 +1,32 @@
 <template>
-  <v-container align-center>
-    <v-layout row wrap align-center justify-center>
-      <v-flex xs6>
-        <v-form ref="form" v-model="formValid" lazy-validation>
-          <v-text-field
-            v-model="firstName"
-            :counter="10"
-            :rules="rules.user"
-            label="Firts Name"
-            required
-          >
-          </v-text-field>
+  <div>
+    <br />
+    <label for="firstName">Firts Name</label>
+    <input type="text" name="" id="firstName" v-model="firstName" />
 
-          <v-text-field
-            v-model="lastName"
-            :counter="10"
-            :rules="rules.user"
-            label="Last Name"
-            required
-          >
-          </v-text-field>
+    <br />
+    <label for="lastName">Last Name</label>
+    <input type="text" name="" id="lastName" v-model="lastName" />
 
-          <v-text-field
-            v-model="email"
-            :rules="rules.email"
-            label="E-mail"
-            required
-          >
-          </v-text-field>
+    <br />
+    <label for="email">E-mail</label>
+    <input type="email" name="" id="email" v-model="email" />
+    <br />
 
-          <v-text-field
-            v-model="password"
-            :counter="10"
-            label="Password"
-            type="password"
-            required
-          >
-          </v-text-field>
+    <label for="password">Password</label>
+    <input type="password" name="" id="password" v-model="password" />
 
-          <v-btn :disabled="!formValid" color="success" @click="validate">
-            Submit
-          </v-btn>
-
-          <v-btn color="error" @click="formReset"> Cancel </v-btn>
-        </v-form>
-      </v-flex>
-    </v-layout>
-  </v-container>
+    <br />
+    <button @click="signup">Submit</button>
+    <br />
+    <button @click="cancel('cancel')">Cancel</button>
+  </div>
 </template>
 
 <script>
-import authMixin from '~/mixins/auth';
-import formMixin from '~/mixins/form';
-import rulesMixin from '~/mixins/rules';
+import authMixin from '@/mixins/auth';
+import formMixin from '@/mixins/form';
+import rulesMixin from '@/mixins/rules';
 
 export default {
   mixins: [authMixin, formMixin, rulesMixin],
@@ -69,6 +43,9 @@ export default {
     },
   },
   methods: {
+    cancel: function (x) {
+      alert(x);
+    },
     afterValidate: function () {
       this.signup();
     },

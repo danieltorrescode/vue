@@ -1,41 +1,22 @@
 <template>
-  <v-container>
-    <v-layout align-center justify-center>
-      <v-flex xs12>
-        <v-form ref="form" v-model="formValid" lazy-validation>
-          <v-flex>
-            <v-text-field
-              v-model="form.name"
-              :counter="10"
-              label="Name"
-              required
-            ></v-text-field>
-          </v-flex>
+  <div>
+    <br />
+    <label for="name">Name</label>
+    <input type="text" name="" id="name" v-model="form.name" />
+    <br />
+    <label for="description">Description</label>
+    <input type="text" name="" id="description" v-model="form.description" />
 
-          <v-flex>
-            <v-text-field
-              v-model="form.description"
-              :counter="10"
-              label="Description"
-              required
-            ></v-text-field>
-          </v-flex>
-
-          <v-btn :disabled="!formValid" color="success" @click="validate">
-            <template v-if="isAdding"> Submit </template>
-            <template v-else> Update </template>
-          </v-btn>
-
-          <v-btn color="error" @click="formReset"> Cancel </v-btn>
-        </v-form>
-      </v-flex>
-    </v-layout>
-  </v-container>
+    <br />
+    <button @click="addTask">Submit</button>
+    <br />
+    <button @click="cancel('cancel')">Cancel</button>
+  </div>
 </template>
 
 <script>
-import formMixin from '~/mixins/form';
-import rulesMixin from '~/mixins/rules';
+import formMixin from '@/mixins/form';
+import rulesMixin from '@/mixins/rules';
 
 export default {
   mixins: [formMixin, rulesMixin],
@@ -46,6 +27,9 @@ export default {
     },
   }),
   methods: {
+    cancel: function (x) {
+      alert(x);
+    },
     addTask: async function () {
       let content = {
         method: 'POST',
@@ -66,10 +50,10 @@ export default {
         })
         .catch((error) => {
           console.error('Error:', error);
-          this.showMessage('Error', 'error');
+          // this.showMessage('Error', 'error');
         });
 
-      this.formReset();
+      // this.formReset();
     },
     editTask: async function () {
       let formResource = `${this.formResource}/${this.formSelected._id}`;
@@ -92,10 +76,10 @@ export default {
         })
         .catch((error) => {
           console.error('Error:', error);
-          this.showMessage('Error', 'error');
+          // this.showMessage('Error', 'error');
         });
 
-      this.formReset();
+      // this.formReset();
     },
   },
 };

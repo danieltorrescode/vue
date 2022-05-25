@@ -23,6 +23,7 @@ export default {
   methods: {
     selectItem(item, action) {
       this.listSelected = { ...item };
+      this.deleteTask();
       if (action == 'det') {
         console.log(this.listSelected);
       } else if (action == 'upd') {

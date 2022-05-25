@@ -1,11 +1,11 @@
 version: '3.7'
 
 services:
-  vue:
+  node:
     container_name: vue
     build:
       context: .
-      dockerfile: DockerFile.vue
+      dockerfile: DockerFile.node
     volumes:
       - .:/app
     ports:
