@@ -1,26 +1,50 @@
 <template>
-  <div>
-    <br />
-    <label for="firstName">Firts Name</label>
-    <input type="text" name="" id="firstName" v-model="firstName" />
+  <v-container>
+    <v-form ref="form" v-model="valid" lazy-validation>
+      <v-text-field
+        v-model="firstName"
+        :counter="10"
+        :rules="nameRules"
+        label="firstName"
+        required
+      ></v-text-field>
 
-    <br />
-    <label for="lastName">Last Name</label>
-    <input type="text" name="" id="lastName" v-model="lastName" />
+      <v-text-field
+        v-model="lastName"
+        :counter="10"
+        :rules="nameRules"
+        label="lastName"
+        required
+      ></v-text-field>
 
-    <br />
-    <label for="email">E-mail</label>
-    <input type="email" name="" id="email" v-model="email" />
-    <br />
+      <v-text-field
+        v-model="email"
+        :rules="emailRules"
+        label="E-mail"
+        required
+      ></v-text-field>
 
-    <label for="password">Password</label>
-    <input type="password" name="" id="password" v-model="password" />
+      <v-text-field
+        v-model="password"
+        :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
+        :rules="[rules.required, rules.min]"
+        :type="show1 ? 'text' : 'password'"
+        name="input-10-1"
+        label="Password"
+        hint="At least 8 characters"
+        counter
+        @click:append="show1 = !show1"
+      ></v-text-field>
 
-    <br />
-    <button @click="signup">Submit</button>
-    <br />
-    <button @click="cancel('cancel')">Cancel</button>
-  </div>
+      <v-btn :disabled="!valid" color="success" class="mr-4" @click="validate">
+        Validate
+      </v-btn>
+
+      <v-btn color="error" class="mr-4" @click="reset"> Reset Form </v-btn>
+
+      <!-- <v-btn color="warning" @click="resetValidation"> Reset Validation </v-btn> -->
+    </v-form>
+  </v-container>
 </template>
 
 <script>
@@ -36,6 +60,7 @@ export default {
     lastName: '',
     email: '',
     password: '',
+    show1: false,
   }),
   computed: {
     url() {
@@ -43,8 +68,18 @@ export default {
     },
   },
   methods: {
-    cancel: function (x) {
-      alert(x);
+    validate() {
+      this.$refs.form.validate().then((result) => {
+        if (result.valid == true) {
+          this.signup();
+        }
+      });
+    },
+    reset() {
+      this.$refs.form.reset();
+    },
+    resetValidation() {
+      this.$refs.form.resetValidation();
     },
     afterValidate: function () {
       this.signup();

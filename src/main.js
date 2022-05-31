@@ -1,7 +1,12 @@
 import { createApp } from 'vue';
 import App from './App.vue';
+// import store from './store';
 import router from './routes/router';
 import "@/assets/styles/main.css";
+import vuetify from './plugins/vuetify';
+import { loadFonts } from './plugins/webfontloader';
+
+loadFonts();
 
 const Vue = createApp(App);
 
@@ -22,4 +27,4 @@ Vue.config.globalProperties.$App = Object.freeze({
   },
 });
 
-Vue.use(router).mount('#app');
+Vue.use(vuetify).use(router).mount('#app');

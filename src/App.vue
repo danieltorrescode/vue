@@ -1,7 +1,11 @@
 <template>
+  <v-app>
+    <v-main>
       <app-toolbar />
       <router-view />
-    <!-- <app-message></app-message> -->
+    </v-main>
+  </v-app>
+  <!-- <app-message></app-message> -->
 </template>
 
 <script>
